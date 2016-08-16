@@ -94,7 +94,7 @@ var path = require('path'),
         /* 公共库 */
         //把指定文件夹下的文件复制到指定的目录
         new TransferWebpackPlugin([
-            {from: path.resolve(__dirname,'./app/base/')}
+            {from: path.resolve(__dirname,'./app/'+dir+'/base/')}
         ], path.resolve(__dirname,outPath)),
 
         new CommonsChunkPlugin({
