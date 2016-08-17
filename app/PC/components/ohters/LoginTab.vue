@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import BtmCnt from './BtmCnt.vue';
+    import BtmCnt from '../public/BtmCnt.vue';
     import { loginGetResulte,loginGetBounced,loginGetBtmCnt,loginLoadFlag } from '../../getters/loginGetter';
     import { loginFun,bouncedFun } from '../../actions/loginAction';
     export default{

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import routers from '../routers';
+import routers from '../vuex/index/routers';
 import index from '../views/index.vue';
 
 Vue.use(Router);
