@@ -2,8 +2,9 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 import middlewares from './middlewares';
 import mutations from './mutations';
-import {state} from './states';
-
+import state from './states';
+import loginCmp from '../../modules/loginCmp'
+import forgetPwdCmp from '../../modules/forgetPwdCmp'
 Vue.use(Vuex);
 /* eslint-disable no-new */
 export default new Vuex.Store({
@@ -11,4 +12,8 @@ export default new Vuex.Store({
   mutations,
   strict: process.env.NODE_ENV !== 'production',
   middlewares,
+  modules: {
+    loginCmp,
+    forgetPwdCmp
+  }
 });

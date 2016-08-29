@@ -1,28 +1,16 @@
 <template>
     <div>
-        <Head />
-        <div className="login_main">
-            <div style="position:absolute;z-index:10;width:100%;">
-                <div className="public_main">
-                    <Login-tab  ></Login-tab>
-                    <Carousel ></Carousel>
-                </div>
-            </div>
-
-        </div>
+        <Login-tab></Login-tab>
+        <Public-footer></Public-footer>
     </div>
 </template>
 <script>
-    import Head from './public/Head.vue';
-    import LoginTab from './ohters/LoginTab.vue';
-    import Carousel from './ohters/Carousel.vue';
-    import '../css/public.css';
-    import '../css/login.css';
+    import LoginTab from './others/LoginTab.vue';
+    import PublicFooter from './public/PublicFooter.vue';
     export default{
-        components:{
-            Head,
-            Carousel,
-            LoginTab
+        components: {
+            LoginTab,
+            PublicFooter
         }
     }
 </script>

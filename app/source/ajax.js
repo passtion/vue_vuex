@@ -16,10 +16,10 @@ import JpPost from "./lib/JpPost";
  *							文件提交         PostFile
  */
 const Ajax = {
-    Get:Get,
-    Post:Post,
-    JpGet:JpGet,
-    JpPost:JpPost
+    Get: Get,
+    Post: Post,
+    JpGet: JpGet,
+    JpPost: JpPost
 }
 
-module.exports =  Ajax;
+module.exports = Ajax;

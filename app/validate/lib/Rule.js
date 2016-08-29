@@ -33,6 +33,7 @@ const rules = {
     'isPassword':/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
     'isImg':/\.(jpg|png|JPG|PNG)$/,
     'isXlsx':/\.(xlsx|excel|xls)$/,
+    'isEmail':/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/,
     'contrast':(value,prepId)=>{
       const prepValue = document.getElementById(prepId).value;
         return value == prepValue;

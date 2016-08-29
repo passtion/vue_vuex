@@ -1,10 +1,15 @@
-import JsonTool from  '../../../tool/lib/JsonTool';
-import loginAction from  '../../actions/loginAction';
-import counterAction from  '../../actions/counterAction';
+/**
+ * 此处写公共的action方法
+ */
+//export const loginLoginTabGetOtpFun= function({ dispatch, state }){
+//    dispatch(types.LOGINTAB_BOUNCED,param);
+//};
+import validateAndSubmit from '../../js/validateAndSubmit';
 
-const jsonTool = new JsonTool();
-export const actions = jsonTool.concatLst([
-    loginAction,
-    counterAction
-]);
 
+export const ajaxRequst=({ dispatch, state },params={})=>{
+    console.log(params);
+    params.dispatch = dispatch;
+    params.getState = state;
+    validateAndSubmit(params);
+};

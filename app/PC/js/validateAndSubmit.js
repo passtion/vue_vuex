@@ -13,6 +13,7 @@ import RSA from '../../rsa/lib/RSA' ;
  * @param moreParams    更多的params
  * @param isCheck       只需要校验,默认false,为false只校验提交,不提交 如果为true 校验通过整个函数返回为json且不提交
  * @param loadFlg       解除按钮加载的prop标志 例如:btnflg
+ * @param otpFlag       解除otp倒数的prop标志 例如:btnflg
  * @param dispatch      redux dispatch方法
  * @param getState      所有的props
  * @param componentLst  逐渐的顺序(必填)
@@ -22,16 +23,18 @@ const validateAndSubmit=({
     getState,
     componentLst=[],
     validates=[],
-    submitType='Get',
+    submitType='Post',
     moreParams={},
-    loadFlg=false,
+    loadFlg=false,  //loading的标志
+    otpFlag=false,  //otp倒数的标志
     isCheck=false
     }={})=>{
     getState= JSON.parse(JSON.stringify(getState));
-    const obj =myObj(dispatch,getState,componentLst,loadFlg);
+    const obj =myObj(dispatch,getState,componentLst,loadFlg,otpFlag);
     let params={},
         loading = {};
     if(loadFlg) {loading[loadFlg]=!loadFlg;obj.setState(loading)} //加载
+
     if (validates !== []){
         params = validate(validates);
         //弹出错误
@@ -40,11 +43,12 @@ const validateAndSubmit=({
             //表单提交
         let isNull =false;
         for(let key in errors){
-            $(key).parents('.public_errMsg').attr('errMsg',`  *${errors[key]}`);  //显示错误
+            //$(key).parents('.public_errMsg').attr('errMsg',`  *${errors[key]}`);  //显示错误
+            alert(`  *${errors[key]}`);
             isNull = key;
         }
         if (isNull) {
-            if(loadFlg) {loading[loadFlg]=!!loadFlg;obj.setState(loading)}; //加载
+            if(loadFlg) {loading[loadFlg]=!!loadFlg;obj.setState(loading)}; //解除加载
             return !isNull;
         }
     }
@@ -65,8 +69,11 @@ const validateAndSubmit=({
  * @param getState
  * @param familyNameLst
  * @param result
+ * @param loadFlg
+ * @param otpFlag
+ * @param type 是否为ajax请求返回
  */
-validateAndSubmit.undidObj=function(getState,familyNameLst,result,loadFlg){
+validateAndSubmit.undidObj=function(getState,familyNameLst,result,loadFlg,otpFlag,type){
     let newState = getState;
     const length = familyNameLst.length;
     familyNameLst.forEach(function(item,i){
@@ -74,7 +81,8 @@ validateAndSubmit.undidObj=function(getState,familyNameLst,result,loadFlg){
         if(i == length-1) {
             if( loadFlg && !newState[loadFlg]) {
                 const loadJson = {};
-                loadJson[loadFlg] =true;
+                loadJson[loadFlg] =true;    //解除loading
+                ( type && (result.status=='0') ) && (newState[otpFlag] = false);  //开始倒数
                 concat(newState,loadJson)
             }
             concat(newState,result)
@@ -90,14 +98,14 @@ validateAndSubmit.undidObj=function(getState,familyNameLst,result,loadFlg){
  * @param familyNameLst 组建的层级lst
  * @returns {{props: {source: *}, setState: setState}}
  */
-function myObj(dispatch, getState,familyNameLst,loadFlg){
+function myObj(dispatch, getState,familyNameLst,loadFlg,otpFlag){
     const sta = getState,
           nowProps=validateAndSubmit.undidObj(sta,familyNameLst,{});
     return{
        props:{source:nowProps.source},
-       setState :(result={})=>{
+       setState :(result={},type)=>{
            const sta = getState;
-           dispatch('SUBMITE',{familyNameLst:familyNameLst,result:result,loadFlg:loadFlg});
+           dispatch('SUBMITE',{familyNameLst:familyNameLst,result:result,loadFlg:loadFlg,otpFlag:otpFlag,type:type});
        }
    }
 };

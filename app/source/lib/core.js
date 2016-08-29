@@ -7,8 +7,8 @@ const core = (  obj,{
                     type="POST",
                     date="",
                     dateType='JSON',
-                    success=(resulte)=>{obj.setState({resulte:resulte})},
-                    error=()=>{obj.setState({resulte:{'msg':'请求超时,检查网络','status_code':'9'}})}
+                    success=(result)=>{obj.setState({result:result},true)},
+                    error=()=>{obj.setState({result:{'msg':'请求超时,检查网络','status_code':'9'}},true)}
                 }={}) => {
             for (let key in date){
                 date[key] = $.trim(date[key]);
@@ -16,7 +16,7 @@ const core = (  obj,{
         let otp ={
             'url': url,
             'type':type,
-            'date':date,
+            'data':date,
             'dataType':dateType,
             'error':error.bind(obj),
             'success':success.bind(obj)
@@ -26,18 +26,18 @@ const core = (  obj,{
         otp.jsonpCallback="success_jsonpCallback";
         otp.jsonp="callback";
     }
-    if(type!="POST" && dateType!='JSONP' && date!=""){
-        let params="",
-            i=0;
-        for (let key in date ){
-            if(i==0){params+="?"}
-            if(i>0){params+='&'}
-            params+=key+"="+date[key];
-            i++;
-        }
-        otp.url=url+params;
-    }
+    //if(type!="POST" && dateType!='JSONP' && date!=""){
+    //    let params="",
+    //        i=0;
+    //    for (let key in date ){
+    //        if(i==0){params+="?"}
+    //        if(i>0){params+='&'}
+    //        params+=key+"="+date[key];
+    //        i++;
+    //    }
+    //    otp.url=url+params;
+    //}
        return $.ajax(otp);
-}
+};
 
 module.exports =  core;

@@ -1,0 +1,421 @@
+.g-hd{
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background-color: #278eed;
+    z-index: 1000;
+}
+.g-bd{
+    padding-top: 100px;
+}
+.g-ft{
+
+}
+.m-logo{
+    width: 200px;
+    height: 100px;
+    text-indent: -9999px;
+}
+.m-nav{
+
+}
+.m-nav li{
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 100px;
+	z-index: 2;
+}
+.m-nav li i{
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 13px auto 7px;
+}
+.m-nav li a{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+}
+.m-nav li a:hover{
+    background-color: #1f72be;
+}
+.m-nav li a.active{
+    background-color: #1f72be;
+}
+
+.m-search{
+    margin-top: 28px;
+}
+.m-search input{
+    width: 260px;
+    height: 40px;
+    margin-right: 50px;
+    font-size: 14px;
+    padding-left: 17px;
+    border: 0;
+    border-radius: 20px;
+    box-shadow: inset 2px 2px 3px #ccc;
+    background-position: 184px -170px;
+}
+.m-user{
+    margin-top: 29px;
+}
+.m-user .name{
+   position: relative;
+    width: 110px;
+    height: 50px;
+    margin-top: -6px;
+    padding-top: 10px;
+    padding-left: 9px;
+}
+.m-user .name:hover{
+    background-color: #1f72be;
+}
+.m-user .name img{
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.m-user .name span{
+    padding-left: 8px;
+    font-size: 16px;
+    vertical-align: middle;
+    color: #fff;
+    background-position: 66px -165px;
+}
+.m-user .name .arc{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 55px;
+    width: 320px;
+    height: 170px;
+    border: 1px solid #1f72be;
+    background-color: #fff;
+}
+.m-user .name .arc h3{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background-color: #1f72be;
+}
+.m-user .name .arc .main{
+    padding: 15px;
+}
+.m-user .name .arc .main h5{
+    line-height: 35px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.m-user .name .arc .main p{
+    line-height: 21px;
+    font-size: 12px;
+    color: #1f72be;
+}
+.m-user .name .arc .triangle{
+    position: absolute;
+    top: -6px;
+    right: 60px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #1f72be;
+
+}
+.m-user .name.active .arc{
+    display: block;
+}
+.m-user .message{
+    margin-left: 25px;
+}
+.m-user .message i{
+    display: inline-block;
+    width: 24px;
+    height: 36px;
+    background-position: -45px -70px;
+}
+.m-user .message span{
+    display: block;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 17px;
+    height: 18px;
+    padding: 0 2px;
+    text-align: center;
+    border: 1px solid #fafcff;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #ff352f;
+}
+.m-user .setting{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-top: -4px;
+    margin-left: 15px;
+}
+.m-user .setting:hover{
+    background-color: #1f72be;
+}
+.m-user .setting i{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-position: -68px -66px;
+}
+.m-user .setting ul{
+    position: absolute;
+    display: none;
+    top: 50px;
+    right: 0px
+}
+.m-user .setting.active ul{
+    display: block;
+}
+.m-user .setting ul li{
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+    background-color: #1f72be;
+}
+.m-user .setting ul li:hover{
+    background-color: #195b98;
+}
+.m-user .setting ul li a{
+    color: #ffffff;
+}
+/***************************** 左侧导航栏 ***********************/
+.m-list{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+}
+.m-list h3{
+    height: 50px;
+    padding-left: 53px;
+    line-height: 50px;
+    font-weight: normal;
+    font-size: 18px;
+    border-bottom: 1px solid #efefef;
+    border-right: 1px solid #dddddd;
+    color: #1f72be;
+    background-position: 20px -114px;
+    background-color: #f6f6f6;
+}
+.m-list ul {
+    position: absolute;
+    width: 200px;
+    top:45px;
+    bottom: 0px;
+    border-right: 1px solid #dddddd;
+    background-color: #f8fafb;
+}
+.m-list ul li > a{
+    display: block;
+    height: 45px;
+    line-height: 45px;
+    text-indent: 52px;
+    font-size: 16px;
+    color: #333333;
+    background-color: #f8fafb;
+}
+.m-list ul li > a.active{
+    margin-right: -1px;
+    border-left:4px solid #278eed;
+    text-indent: 48px;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    border-right: 1px solid #ffffff;
+    background-color: #ffffff;
+}
+
+.m-conter{
+    margin-left: 200px;
+    padding: 20px 20px 20px 10px;
+
+}
+.m-conter .notice-tip{
+  /* 缺少图标 */
+  border: 1px solid #ffed8a;
+  height: 30px;
+  line-height: 30px;
+  background-color: #fff7cc;
+  color: #847107;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.m-conter .g-padding20 .g-title{
+  position: absolute;
+  color: #fff;
+  line-height: 30px;
+  padding-left: 26px;
+  padding-right: 26px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 15px;
+  background-color: #2f90ea;
+  height: 30px;
+  margin-top: -34px;
+}
+.m-conter .writing{
+    display: inline-block;
+    padding-top: 9px;
+}
+.m-conter .search button{
+    position: absolute;
+    right: 7px;
+    top: 5px;
+    width: 24px;
+    height: 24px;
+    border: 0;
+    background-position: -35px -179px;
+    background-color: #ffffff;
+}
+
+.m-check-list .checkbox-inline{
+    width: 25%;
+    margin-left: 0;
+}
+
+.m-space{
+    position: absolute;
+    top: 45px;
+    width: 50px;
+    height: 5px;
+    background: #278eed;
+}
+.m-space2{
+    position: absolute;
+    top: 50px;
+    width: 110px;
+    height: 5px;
+    background: #278eed;
+    right: 0;
+}
+.m-archives a{
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #eeeeee;
+}
+.m-archives a.active{
+    background-color: #ffffff;
+}
+
+/******************* 找回密码 ******************/
+.m-forgetPwd{
+    width: 420px;
+    margin: 50vh auto 0;
+    transform: translateY(-50%);
+    transform-style:preserve-3d
+}
+.m-forgetPwd .title,
+.m-forgetPwd .cnt{
+    border: 1px solid #C9C9C9;
+    background-color: #fff;
+}
+.m-forgetPwd .t-green{
+    position: relative;
+}
+.m-forgetPwd .t-green:before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background-color: #096;
+}
+
+
+.search_bar {
+    width: auto;
+    height: 45px;
+    margin-top: 10px;
+    border-top: 1px solid #e5e5e5;
+    background: #f6f6f6;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+.search_bar:after {
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.search_bar .search_area {
+    position: relative;
+    float: right;
+    width: 200px;
+    height: 35px;
+    margin: 4px 5px 0 0;
+}
+
+.search_bar input {
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    color: #333;
+    text-indent: 10px;
+    border: 0 none;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+}
+
+.search_bar input:focus {
+    -webkit-box-shadow: 0px 0px 1px #6C6A6A;
+    -moz-box-shadow: 0px 0px 1px #6C6A6A;
+    box-shadow: 0px 0px 1px #6C6A6A;
+}
+
+.search_bar .search_icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: url(../images/pic_3.png) no-repeat center center;
+    -webkit-background-size: 20px 20px;
+    -moz-background-size: 20px 20px;
+    background-size: 20px 20px;
+}
+
+table.m-pro{
+    width: 80%;
+    margin: 0 auto;
+}
+table.m-pro th{
+    text-align: center;
+}
+table.m-pro td,table.m-pro th{
+    padding: 10px;
+    border: 1px solid #ddd;
+}

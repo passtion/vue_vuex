@@ -144,9 +144,13 @@ if (prod) {
         historyApiFallback: true,
         publicPath: "",
         proxy: {
-            '/a': {
-                target: 'http://192.168.1.44:8080/a',
-                secure: true
+            '/f/*': {
+                target: 'http://192.168.1.44:8080/',
+                secure: false
+            },
+            '/a/*':{
+                target: 'http://192.168.1.44:8080/',
+                secure: false
             }
         },
         stats: {
