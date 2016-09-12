@@ -11,19 +11,7 @@
       return {
         time: 5,
       };
-    },
-    route: {
-      data() {
-        const t = setInterval(() => {
-          if (this.time <= 0) {
-            clearInterval(t);
-            this.$route.router.go({ name: 'login' });
-            return;
-          }
-          this.time -= 1;
-        }, 1000);
-      },
-    },
+    }
   };
 </script>
 

@@ -1,0 +1,9 @@
+{
+  "result":[
+{"title":"待处理","count":"1","jobLst":[{"id":"001","type":"1","content":"我的任务","date":"下周六","describe":true,"head":"彭峰"},{"id":"002","type":"2","content":"彭峰任务","date":"下周二","describe":true,"head":"彭峰"}]},
+{"title":"处理中","count":"0"},
+{"title":"已完成","count":"1","jobLst":[{"id":"003","type":"2","content":"彭峰任务","date":"下周二","describe":true,"head":"彭峰"}]}
+],
+  "message": "success",
+  "status": "0"
+}

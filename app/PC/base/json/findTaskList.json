@@ -1,0 +1,26 @@
+{
+  "result": {
+    "1": [{
+      "id": "6cb05035859943038710e9b6f076cd30",
+      "createDate": "2016-08-31 17:43:45",
+      "updateDate": "2016-08-31 18:07:14",
+      "title": "开发项目管理模块",
+      "beginTime": "2016-08-29 00:00:00",
+      "endTime": "2016-09-09 00:00:00",
+      "priorityId": "2",
+      "content": "开发项目管理模块功能",
+      "taskStateId": "1",
+      "grade": 1,
+      "responsibles": "李蒋洋",
+      "projectId": "c7928a1a99ff476ebc5897e202ee1d1e",
+      "endTimeVal": "16/09/09 星期五",
+      "isOverTime": "F",
+      "finishAmount": "0",
+      "subTaskAmount": "0"
+    }],
+    "2": [],
+    "6": []
+  },
+  "message": "success",
+  "status": "0"
+}

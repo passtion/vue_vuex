@@ -17,6 +17,7 @@ import RSA from '../../rsa/lib/RSA' ;
  * @param dispatch      redux dispatch方法
  * @param getState      所有的props
  * @param componentLst  逐渐的顺序(必填)
+ * @param result        返回后的数据处理的方法
  */
 const validateAndSubmit=({
     dispatch,
@@ -27,7 +28,8 @@ const validateAndSubmit=({
     moreParams={},
     loadFlg=false,  //loading的标志
     otpFlag=false,  //otp倒数的标志
-    isCheck=false
+    isCheck=false,
+    result =false
     }={})=>{
     getState= JSON.parse(JSON.stringify(getState));
     const obj =myObj(dispatch,getState,componentLst,loadFlg,otpFlag);
@@ -56,11 +58,9 @@ const validateAndSubmit=({
         sucParams=jsonTool.concat(params.success,moreParams);
     for(let key in sucParams){  //进行前后排空 并将密码进行rsa加密
         sucParams[key] = $.trim(sucParams[key]);
-        //const  pswLength = sucParams[key].length,
-        //       flag= ((key =='password' || key =='userPsw' ) && sucParams.loginType != '1' && pswLength < 14 ); //判断是否是密码,排除验证码,排除token
-        //sucParams[key] = flag  ? RSA(sucParams[key]) : sucParams[key];
     }
-    isCheck || Ajax[submitType](obj,sucParams);
+    //result && (sucParams.result = result);  //增加成功自处理的方法
+    isCheck || Ajax[submitType](obj,sucParams,result);
     return sucParams;
 };
 

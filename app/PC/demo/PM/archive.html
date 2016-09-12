@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .border-round{border: 1px solid #E1E1E1;border-radius:3px;}
+    .name-icon{display: inline-block;width: 24px;height: 24px;border-radius: 12px;background-color: #C38ACF;color: white;line-height: 24px;font-size: 12px;}
+    .proj-info-bounced {position: absolute; top:20%; bottom: 50px;left: 50%; width: 600px;margin: 0 0 0 -300px;z-index: 100;background-color: white;border-radius: 5px;}
+    .proj-info-bounced header{position: relative;padding: 0 15px;border-bottom:1px solid #E1E1E1;padding-bottom: 5px;}
+    .proj-info-bounced header p.pop-title{position: relative;top:0; text-align: left;width: 100%;padding: 10px 0;}
+    .proj-info-bounced header p.pop-title em.pop-close{position: absolute;right:0;height: 16px;width: 16px;background: url("../../images/pop-close.png")  no-repeat transparent;}
+    .proj-info-bounced section { margin: 15px 15px 0 15px;}
+    .proj-info-bounced section ul.archive-lst{padding: 13px 20px;}
+    .proj-info-bounced section ul.archive-lst li{overflow: hidden;word-wrap: break-word;border-bottom:1px solid #eeeeee; }
+    .proj-info-bounced section ul.archive-lst li span{float: left;display: inline-block;width: 30%;text-align: left;}
+
+</style>
+<body>
+
+
+<div class="proj-info-bounced">
+    <header>
+        <p class="pop-title" title="弹框头部">
+            <h3>查看归档</h3>
+            <em class="in-block pop-close" ></em>
+        </p>
+    </header>
+    <section class="scroll-lst">
+        <ul class="archive-lst" >
+            <li>
+                <span>我的任务</span>
+                <span>世界</span>
+                <span>时间</span>
+                <button>恢复</button>
+            </li>
+            <li></li>
+            <li></li>
+        </ul>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul,p,div,h3,h6{padding: 0;margin: 0;}
+    ul{list-style: none;}
+    .in-block{display: inline-block;}
+    .font14{font-size: 14px;}
+    .scroll-lst{overflow-y: auto;}
+    .mright5{margin-right: 5px;}
+    .colora6{color: #a6a6a6;}
+    .proj-info-bounced {position: absolute; top:20%; bottom: 50px;left: 50%; width: 600px;margin: 0 0 0 -300px;z-index: 100;background-color: white;border-radius: 5px;}
+    .proj-info-bounced input{ width: 100%;height: auto;margin: 0;padding: 6px;line-height: 20px;}
+    .item { cursor: pointer; }
+    .bold { font-weight: bold; }
+    ul {padding-left: 1em;line-height: 1.5em; list-style-type: dot; }
+</style>
+<body>
+
+<div class="proj-info-mask"> </div>
+        <div class="proj-info-bounced">
+            <input type="text" placeholder="查找成员">
+            <div class="staff-list">
+                <ul v-show="open" v-if="isFolder">
+                    <item
+                            class="item"
+                            v-for="model in model.children"
+                            :model="model">
+                    </item>
+
+                    <li>总裁办</li>
+                </ul>
+            </div>
+            <div class="choice-people">
+
+            </div>
+        </div>
+</body>
+</html>

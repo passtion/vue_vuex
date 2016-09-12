@@ -16,10 +16,6 @@
                 <label v-if="item.type =='checkbox'" class="{{!!item.typeClass ?item.typeClass:typeClass}}" v-for="checkItem in item.value">
                     <input type="checkbox" name="{{item.name}}" :value="checkItem.value">{{checkItem.text}}
                 </label>
-                <!--<Tool-table v-if="item.type =='table'"-->
-                            <!--class="table table-hover table-bordered"-->
-                <!--&gt;-->
-                <!--</Tool-table>-->
             </div>
         </section>
     </div>

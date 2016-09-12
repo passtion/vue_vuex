@@ -3,7 +3,10 @@ import Vue from 'vue';
 import middlewares from './middlewares';
 import mutations from './mutations';
 import state from './states';
+
+//import  '../../js/vue.drag-and-drop';
 Vue.use(Vuex);
+
 /* eslint-disable no-new */
 export default new Vuex.Store({
   state,

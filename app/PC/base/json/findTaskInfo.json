@@ -1,0 +1,24 @@
+{
+  "result": {
+    "id": "ab020827fb3142cb8871e3bac43d076c",
+    "createDate": "2016-09-06 16:00:50",
+    "updateDate": "2016-09-06 16:00:50",
+    "title": "新的任务1",
+    "beginTime": "2016-09-06 16:00:50",
+    "endTime":"2016-09-16 16:00:50",
+    "priorityId": "2",
+    "content": "",
+    "taskStateId": "1",
+    "grade": 1,
+    "projectId": "c7928a1a99ff476ebc5897e202ee1d1e",
+    "subTaskAmount": "1",
+    "finishAmount": "0",
+    "endTimeVal": "",
+    "responsibleList": [{
+      "userId": "12acc24ce73a4ac68efaad6b9e9d045c",
+      "name": "张欢"
+    }]
+  },
+  "message": "success",
+  "status": "0"
+}

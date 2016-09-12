@@ -1,0 +1,12 @@
+{
+  "result": [{
+    "userId": "1",
+    "name": "系统管理员"
+  },
+    {
+      "userId": "12acc24ce73a4ac68efaad6b9e9d045c",
+      "name": "张欢"
+    }],
+  "message": "success",
+  "status": "0"
+}

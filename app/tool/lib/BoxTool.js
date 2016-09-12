@@ -13,7 +13,6 @@ jQuery.layer =(obj)=>{
     containerBox.css({"z-index":"9999","display":"block","position":position ,"top":"50%","left":"50%","margin-top": -(containerBox.height()/2)+ "px","margin-left": -(containerBox.width()/2) + "px"});
     let layer=jQuery("#layer");
     layer.css({"width":"100%","height":"100%","position":position,"top":"0px","left":"0px","background-color":"#000","z-index":"9998","opacity":"0.6"});
-    //jQuery("body").append(layer);
     const layer_iestyle=()=>{
       const maxWidth = Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth) + "px",
             maxHeight = Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight) + "px";

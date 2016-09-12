@@ -5,6 +5,8 @@ import mutations from './mutations';
 import state from './states';
 import loginCmp from '../../modules/loginCmp'
 import forgetPwdCmp from '../../modules/forgetPwdCmp'
+import taskInfoCmp from '../../modules/taskInfoCmp'
+import taskIndexCmp from '../../modules/taskIndexCmp'
 Vue.use(Vuex);
 /* eslint-disable no-new */
 export default new Vuex.Store({
@@ -14,6 +16,9 @@ export default new Vuex.Store({
   middlewares,
   modules: {
     loginCmp,
-    forgetPwdCmp
+    forgetPwdCmp,
+    taskInfoCmp,
+    taskIndexCmp
+
   }
 });

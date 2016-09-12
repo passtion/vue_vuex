@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul,p,div,h3,h6{padding: 0;margin: 0;}
+    ul{list-style: none;}
+    .in-block{display: inline-block;}
+    .font14{font-size: 14px;}
+    .scroll-lst{overflow-y: auto;}
+    .mright5{margin-right: 5px;}
+    .colora6{color: #a6a6a6;}
+    .border-round{border: 1px solid #E1E1E1;border-radius:3px;}
+    .name-icon{display: inline-block;width: 24px;height: 24px;border-radius: 12px;background-color: #C38ACF;color: white;line-height: 24px;font-size: 12px;}
+    .proj-info-bounced {position: absolute; top:20%; bottom: 50px;left: 50%; width: 600px;margin: 0 0 0 -300px;z-index: 100;background-color: white;border-radius: 5px;}
+    .proj-info-bounced header{position: relative;padding: 0 15px;border-bottom:1px solid #E1E1E1;padding-bottom: 5px;}
+    .proj-info-bounced header p.pop-title{position: relative;top:0; text-align: left;width: 100%;padding: 10px 0;}
+    .proj-info-bounced header p.pop-title span{color: #a6a6a6;display: inline-block;}
+    .proj-info-bounced header p.pop-title a.proj-status{color: gray;}
+    .proj-info-bounced header p.pop-title a.proj-status:hover{color: #03a9f4;}
+    .proj-info-bounced header p.pop-title a.proj-more{cursor:pointer;position: absolute;right: 33px;top: 13px; width:44px; background: url("../../images/pull-down.png") 28px no-repeat transparent;}
+    .proj-info-bounced header p.pop-title em.pop-close{position: absolute;right:0;height: 16px;width: 16px;background: url("../../images/pop-close.png")  no-repeat transparent;}
+    .proj-info-bounced ul.proj-status-list,.proj-info-bounced ul.proj-more-list {position: absolute;top: 27px;z-index: 110; padding:5px  0;width: 150px; text-align: left;font-size: 14px; -webkit-box-shadow: 0 7px 21px rgba(0,0,0,.1); box-shadow: 0 7px 21px rgba(0,0,0,.1);border: solid 1px transparent;border-radius: 3px;background-color: white;}
+    .proj-info-bounced ul.proj-more-list{right: 0;}
+    .proj-info-bounced ul.proj-status-list li,.proj-info-bounced  ul.proj-more-list li{line-height: 30px; padding: 0 12px;cursor: pointer;}
+    .proj-info-bounced ul.proj-status-list li.pop-choice{background:url("../../images/pop_level_choice.png") 114px/16% no-repeat ;}
+    .proj-info-bounced ul.proj-status-list li:hover,.proj-info-bounced  ul.proj-more-list li:hover{background-color:#F1EDED;}
+    .proj-info-bounced section { margin: 15px 15px 0 15px;}
+    .editable {white-space:normal; word-break:break-all;word-wrap:break-word;cursor: pointer;outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0);border-radius: 3px;}
+    .editable:hover{background-color: #F1EDED;}
+    .proj-info-bounced header p.proj-title {text-align:center;padding:7px 0;width:80%;margin:auto;position: relative;}
+    .proj-info-bounced section ul.set-list {overflow: hidden;}
+    .proj-info-bounced section ul.set-list li{float: left;}
+    .proj-info-bounced section ul.set-list li{float: left;width: 33%;}
+    .proj-info-bounced section ul.set-list li a{display: inline-block; margin: 10px 16px 14px; line-height: 24px; overflow: hidden; text-overflow: ellipsis;font-size: 14px; cursor: pointer;}
+    .proj-info-bounced section ul.set-list li a:hover{color:#03a9f4}
+    .proj-info-bounced section ul.set-list li h6{margin: 16px 16px 0 ; line-height: 12px;color: gray;}
+    .proj-info-bounced section ul.set-list li a.set-end-date{background: url("../../images/choice-date.png") 1px 0/26% no-repeat;text-indent: 30px;}
+    .proj-info-bounced section .add-remark{padding: 10px;margin-top: 10px;background: url("../../images/proj-remark.png") 17px 14px/4% no-repeat transparent;}
+    .proj-info-bounced section .add-remark p{padding: 7px 10px;margin-left: 38px;}
+    .proj-info-bounced section .parts-list{padding: 7px 10px; margin-top: 10px;}
+    .proj-info-bounced section .parts-list strong{font-size:14px;color: gray;line-height: 28px; }
+    .proj-info-bounced section .parts-list p span{margin-right: 5px;}
+    .proj-info-bounced section .parts-list p em.add-name{width: 24px;height: 24px;background: url("../../images/gray-add-icon.png" )0/100% no-repeat transparent;vertical-align: bottom;  cursor: pointer;}
+    .proj-info-bounced section ul.child-proj-lst {margin-top: 10px;}
+    .proj-info-bounced section ul.child-proj-lst li{line-height: 20px;padding:7px 10px;border-bottom: 1px solid #E1E1E1;font-size: 14px;}
+    .proj-info-bounced section ul.child-proj-lst li.add{border-bottom: 0; cursor: pointer; }
+    .proj-info-bounced section ul.child-proj-lst li.add:hover{ color:#03a9f4; }
+    .proj-info-bounced section ul.child-proj-lst li p{width: 86%;padding: 2px 0;vertical-align: top; }
+    .proj-info-bounced section ul.child-proj-lst li em{cursor: pointer;width: 20px ;height: 20px;background: 0/100% no-repeat transparent;vertical-align: top;}
+    .proj-info-bounced section ul.child-proj-lst li em.check-box{background-image: url("../../images/check-before.png") ;}
+    .proj-info-bounced section ul.child-proj-lst li em.check-box.choice{background-image: url("../../images/check-after.png")}
+    .proj-info-bounced section ul.child-proj-lst li em.time-icon{background-image: url("../../images/choice-date.png")}
+    .proj-info-bounced section ul.child-proj-lst li span.name-icon.child-name{vertical-align: top;cursor: pointer;}
+    .proj-info-bounced section ul.child-proj-lst li.add em.add-name{width: 20px;height: 20px;background: url("../../images/gray-add-icon.png" )0/100% no-repeat transparent;vertical-align: top;  margin-right: 20px;}
+/**归档**/
+    .proj-info-bounced section ul.archive-lst{padding: 13px 20px;}
+    .proj-info-bounced section ul.archive-lst li{overflow: hidden;word-wrap: break-word;border-bottom:1px solid #eeeeee;color: #383838; }
+    .proj-info-bounced section ul.archive-lst li:first-child{border-top:1px solid #eeeeee;}
+    .proj-info-bounced section ul.archive-lst li:hover{background-color:#ECEBEB;}
+    .proj-info-bounced section ul.archive-lst li span{float: left;display: inline-block;width: 33%;text-align: left;text-overflow: ellipsis; white-space: nowrap;overflow: hidden;font-size: 14px;line-height: 40px;}
+    .proj-info-bounced section ul.archive-lst li span.last-child{text-align: right;}
+    .proj-info-bounced section ul.archive-lst li  a{ line-height: 40px;display: inline-block; width: 33%; cursor: pointer;text-align: right;}
+    .proj-info-bounced section ul.archive-lst li  a em{ line-height: 40px;display: inline-block; width: 16px;height: 16px; background: url("../../images/restore-back.png") no-repeat transparent;margin-right: 5px;}
+    .proj-info-bounced section ul.archive-lst li  a:hover{color:#337ab7}
+    .proj-info-bounced header .proj-title em.query-icon{display: inline-block;height: 16px;width: 16px;background:url("../../images/query-icon.png") no-repeat transparent;position: absolute;left: 0;  top:13px;}
+    .proj-info-bounced header .proj-title input{width: 100%;height: 24px;text-indent: 18px;border: 0;outline: none;}
+    </style>
+<body>
+
+<div class="proj-info-mask"> </div>
+
+<div class="proj-info-bounced">
+    <header>
+        <p class="pop-title" style="text-align: center;font-size: 18px;">
+           查看归档
+            <em class="in-block pop-close" ></em>
+        </p>
+        <p class="proj-title " style="width: 50%;"  ><em class="query-icon"></em> <input class="editable" type="text"></p>
+    </header>
+    <section class="scroll-lst">
+
+        <ul class="archive-lst" >
+            <li>
+                <span>我的任务</span>
+                <span>世界</span>
+                <span class="last-child">时间</span>
+                <a><em></em>恢复</a>
+            </li>
+
+        </ul>
+    </section>
+</div>
+    <!--<div class="proj-info-bounced">-->
+        <!--<header>-->
+            <!--<p class="pop-title" >-->
+                <!--<span class="font14">任务列表</span>-->
+                <!--<a class="proj-status in-block font14">待处理</a>-->
+                <!--<a class="proj-more in-block font14">更多</a>-->
+                <!--<em class="in-block pop-close" ></em>-->
+            <!--</p>-->
+            <!--<ul class="proj-status-list">-->
+                <!--<li class="pop-choice"><a>待处理</a></li>-->
+                <!--<li><a>进行中</a></li>-->
+                <!--<li><a>已完结</a></li>-->
+            <!--</ul>-->
+            <!--<ul class="proj-more-list">-->
+                <!--<li><a>删除任务</a></li>-->
+                <!--<li><a>归档任务</a></li>-->
+                <!--<li><a>暂停任务</a></li>-->
+            <!--</ul>-->
+            <!--<p class="proj-title editable" title="点击可编剧" contenteditable >彭峰</p>-->
+        <!--</header>-->
+        <!--<section class="scroll-lst">-->
+            <!--<ul class="set-list border-round" >-->
+                <!--<li>-->
+                    <!--<h6>执行者</h6>-->
+                    <!--<a>-->
+                        <!--<span class="name-icon mright5">彭峰</span>-->
+                        <!--彭峰-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<h6>截止时间</h6>-->
+                    <!--<a class="set-end-date indent30 colora6" >点击设置</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<h6>优先级</h6>-->
+                    <!--<a class="colora6"><span class="name-icon mright5 " >&nbsp;</span>普通</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="add-remark border-round">-->
+                <!--<p contenteditable class="editable" ></p>-->
+            <!--</div>-->
+            <!--<div class="parts-list border-round" >-->
+                <!--<strong class="parts-title">参与者</strong>-->
+                <!--<p >-->
+                    <!--<span class="name-icon">彭峰</span>-->
+                    <!--<span class="name-icon">彭峰</span>-->
+                    <!--<span class="name-icon">彭峰</span>-->
+                    <!--<span class="name-icon">彭峰</span>-->
+                    <!--<em class="add-name in-block"></em>-->
+                <!--</p>-->
+            <!--</div>-->
+            <!--<ul class="child-proj-lst border-round" >-->
+                <!--<li>-->
+                    <!--<em class="check-box in-block"></em>-->
+                    <!--<p contenteditable class="proj-title editable in-block">此处标记</p>-->
+                    <!--<em class="time-icon in-block "></em>-->
+                    <!--<span class="name-icon child-name" >彭峰</span>-->
+                <!--</li>-->
+                <!--<li class="add">-->
+                    <!--<em class="add-name in-block" ></em>添加子任务-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <!--<ul class="records-flow" title="操作流水记录">-->
+                <!--<li></li>-->
+            <!--</ul>-->
+        <!--</section>-->
+<!--</div>-->
+</body>
+</html>

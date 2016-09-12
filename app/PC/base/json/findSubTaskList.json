@@ -1,0 +1,19 @@
+{
+  "result": [{
+    "id": "3c7d69672a124b8fb8cdf5372b1dbd29",
+    "createDate": "2016-09-06 16:10:18",
+    "updateDate": "2016-09-06 16:10:18",
+    "title": "二级新任务",
+    "beginTime": "2016-09-06 16:10:18",
+    "endTime": "2016-09-20 10:00:00",
+    "taskStateId": "2",
+    "grade": 2,
+    "endTimeVal": "16/09/20 星期二",
+    "responsibleList": [{
+      "userId": "12acc24ce73a4ac68efaad6b9e9d045c",
+      "name": "张欢"
+    }]
+  }],
+  "message": "success",
+  "status": "0"
+}

@@ -3,8 +3,10 @@
  */
 import core from './core.js';
 
-const Post = (obj,date={}) => {
-    core(obj,{date:date});
+const Post = (obj,date={},result) => {
+    const params ={date:date};
+    result && (params.success=result);
+    core(obj,params);
 }
 
 module.exports =  Post;

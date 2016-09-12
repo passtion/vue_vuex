@@ -3,8 +3,10 @@
  */
 import core from './core';
 
-const JpGet = (obj,date="") => {
-    core(obj,{dateType:"JSONP",type:"GET",date:date});
+const JpGet = (obj,date="",result) => {
+    const params ={dateType:"JSONP",type:"GET",date:date};
+    result && (params.success=result);
+    core(obj,params);
 }
 
 module.exports =  JpGet;

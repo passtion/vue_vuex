@@ -2,9 +2,10 @@
  * Created by girl on 16/5/25.
  */
 import core from './core.js';
-"use strict"
-const Gost = (obj,date="") => {
-    core(obj,{type:"GET",date:date});
+const Get = (obj,date="",result) => {
+    const params = {type:"GET",date:date};
+    result && (params.success=result);
+    core(obj,params);
 }
 
-module.exports =  Gost;
+module.exports =  Get;
