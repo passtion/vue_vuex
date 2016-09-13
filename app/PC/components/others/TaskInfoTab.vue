@@ -33,9 +33,8 @@
             <ul v-else class="gallery-list">
                 <Public-gallery-tab
                         v-drag-and-drop drop="handleImageDrop"
-                        v-for="(i,item) in taskInfoGetPopProjInfoLst.result"
+                        v-for="item in taskInfoGetPopProjInfoLst.result"
                         :params="item"
-                        :type="i"
                 ></Public-gallery-tab>
             </ul>
         </div>
@@ -52,7 +51,8 @@
     import TaskInfoArchive from './TaskInfoArchive.vue';
     import ToolError from '../public/ToolError.vue';
     import PublicLoading from '../public/PublicLoading.vue';
-    import {taskInfoArchiveFlagFun,taskInfoGetprojLstFun,taskInfoPopAlterStatusFun,taskInfoAlterStatusInCacheFun,taskInfoShowOrHideErrorFun} from '../../actions/taskInfoActions';
+    import {taskInfoArchiveFlagFun,taskInfoGetprojLstFun,taskInfoPopAlterStatusFun
+            ,taskInfoAlterStatusInCacheFun,taskInfoShowOrHideErrorFun,taskInfoGetPersonFun} from '../../actions/taskInfoActions';
     import {taskInfoGetArSlidingFlag,taskInfoGetPopProjInfoLst} from '../../getters/taskInfoGetter';
     export default{
         components:{
@@ -67,7 +67,8 @@
                 taskInfoGetprojLstFun,       //获取我的任务列表
                 taskInfoPopAlterStatusFun,
                 taskInfoAlterStatusInCacheFun,
-                taskInfoShowOrHideErrorFun
+                taskInfoShowOrHideErrorFun,
+                taskInfoGetPersonFun
             },
             getters:{  //任务详情标志
                 taskInfoGetArSlidingFlag,  //归档弹框标志
@@ -77,18 +78,21 @@
         methods: {
             handleImageDrop: function(itemOne, itemTwo) {
                 console.log('handleImageDrop', itemOne.getAttribute('id'),itemOne.getAttribute('oldType'), itemTwo.getAttribute('id'));
-                const params = {id:itemOne.getAttribute('id'),type:itemTwo.getAttribute('id'),oldType:itemOne.getAttribute('oldType')};
+                const params = {"id":itemOne.getAttribute('id'),"taskStateId":itemTwo.getAttribute('id'),"oldType":itemOne.getAttribute('oldType')};
+                this.taskInfoAlterStatusInCacheFun(params);
                 this.taskInfoPopAlterStatusFun({
                             params:params,
                             result:(value)=>{
-                (value.status == 0) ?this.taskInfoAlterStatusInCacheFun(params) :this.taskInfoShowOrHideErrorFun(value.message);//做报错处理
-            }
+                (value.status == 0) ?'':this.taskInfoShowOrHideErrorFun(value.message);//做报错处理
+                }
             });
             }
         },
         ready(){
             const params = {projectId:this.$route.params.id};
             this.taskInfoGetprojLstFun(params);
+            this.taskInfoGetPersonFun();
+
         }
     }
 </script>

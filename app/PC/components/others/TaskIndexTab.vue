@@ -27,16 +27,20 @@
     <Task-index-add
             v-if="taskIndexGetAddProjFlag">
     </Task-index-add>
+    <Tool-error>
+    </Tool-error>
 </template>
 <script>
     import TaskIndexAdd from './TaskIndexAdd.vue';
     import PublicLoading from '../public/PublicLoading.vue';
+    import ToolError from '../public/ToolError.vue';
     import {taskIndexQueryLstFun,taskIndexShowOrHiAddFun} from '../../actions/taskIndexActions';
     import {taskIndexGetProjLst,taskIndexGetAddProjFlag} from '../../getters/taskIndexGetter';
     export default{
         components:{
             TaskIndexAdd,
-            PublicLoading
+            PublicLoading,
+            ToolError
         },
         vuex:{
             getters:{
@@ -56,7 +60,6 @@
         ready(){
             this.init();
             this.taskIndexQueryLstFun();
-
         }
 
     }

@@ -18,10 +18,10 @@
             </p>
         </header>
         <section>
-            <input type="text" placeholder="输入项目名" @keyup.enter="taskIndexAddProjFun"  >
+            <input type="text" placeholder="输入项目名" @keyup.enter="addProj" v-model="title">
             <Btm-cnt
                     :params='taskIndexGetAddProjBtnParam'
-                    :onclick='taskIndexAddProjFun'
+                    :onclick='addProj'
                     :loadflag='taskIndexGetAddProjBtnParam.btnFlag'
             >
             </Btm-cnt>
@@ -33,6 +33,7 @@
     import ToolBox from '../public/ToolBox.vue';
     import BtmCnt from '../public/ToolBtmCnt.vue';
     import {taskIndexAddProjFun,taskIndexShowOrHiAddFun} from '../../actions/taskIndexActions';
+    import {taskInfoShowOrHideErrorFun} from '../../actions/taskInfoActions';
     import {taskIndexGetAddProjRlt,taskIndexGetAddProjBtnParam} from '../../getters/taskIndexGetter';
     export default{
         components:{
@@ -42,16 +43,30 @@
         vuex:{
             actions:{
                 taskIndexAddProjFun,
-                taskIndexShowOrHiAddFun
+                taskIndexShowOrHiAddFun,
+                taskInfoShowOrHideErrorFun
             },
             getters:{
                 taskIndexGetAddProjRlt,
                 taskIndexGetAddProjBtnParam
             }
         },
+        data(){
+            return{
+                title:''
+            }
+        },
+        methods:{
+            addProj(){
+                 const  title =  this.title.trim(),
+                        params =  {title:title};
+                if (!title) return;
+                this.taskIndexAddProjFun(params);
+            }
+        },
         ready(){
             this.$watch('taskIndexGetAddProjRlt',(value)=>{
-                this.$route.router.go({name: 'taskInfo', params:{ id: value.id }})
+            (value.status == 0) ?this.$route.router.go({name: 'taskInfo', params:{ id: value.result.id }}):this.taskInfoShowOrHideErrorFun(value.message);//做报错处理
         })
         }
     }

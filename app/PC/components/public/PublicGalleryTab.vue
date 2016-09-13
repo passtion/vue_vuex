@@ -7,12 +7,12 @@
     li.gallery-tab  div.add-job-tab p.cteate-job-info  a.cteate-new-job{ display: inline-block; color: #fff; background-color: #14b4fc;width: 72px; padding: 8px 12px; font-size: 14px;line-height: 20px;text-align: center;vertical-align: middle;cursor: pointer;border: 1px solid #d9d9d9;border-radius: 3px; position: absolute;right: 0;}
 </style>
 <template>
-    <li draggable="true" class="gallery-tab" id="{{type}}">
-        <header><h3>{{type| dealType}} <span>{{!!params.length ? params.length:''}}</span></h3></header>
+    <li draggable="true" class="gallery-tab" id="{{params.taskStateId}}">
+        <header><h3>{{params.taskStateId| dealType}} <span>{{!!params.list.length ? params.list.length:''}}</span></h3></header>
         <section>
             <ul class="job-list">
                 <Public-job
-                        v-for="item in params"
+                        v-for="item in params.list"
                         :params="item"
                 > </Public-job>
             </ul>
@@ -57,7 +57,7 @@
             PublicJob,
             ToolCalendar
         },
-        props:['params','type'],
+        props:['params'],
         vuex:{
             actions:{
                 taskInfoAddJobInCacheFun,
@@ -95,14 +95,14 @@
                 const titleVale =  this.titleVale.trim();
                 if(!titleVale) return;
                 //缓存里面增加
-                const params = {taskStateId:this.type,projectId:this.$route.params.id,title: titleVale, endTimeVal: this.calendar.value, responsibles: '待定',responsibleList:[{"userId": "00510d53bca34fdbaf762effdb280575"}],id:'noPut'};
+                const params = {taskStateId:this.params.taskStateId,projectId:this.$route.params.id,title: titleVale,responsibles:'待定',endTimeVal: this.calendar.value,id:'noPut'};
                 this.taskInfoAddJobInCacheFun(params);
                 //请求后台,并添加id
                 this.taskInfoAddJobInFun(
                         {
                             params:params,
                             result:(value)=>{
-                            const addCacheParam = {type:this.type,id:value.result.id};
+                            const addCacheParam = {type:this.params.taskStateId,id:value.result.id};
                             (value.status == 0)
                                     ? this.taskInfoAddJobIdInCacheFun(addCacheParam)//增加id到缓存
                                     :this.taskInfoShowOrHideErrorFun(value.message);//做报错处理

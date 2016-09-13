@@ -46,8 +46,4 @@
             }
         }
     }
-
-    class Recur{
-
-    }
 </script>

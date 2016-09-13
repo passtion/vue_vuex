@@ -19,7 +19,8 @@ const source =(flag)=>{
         updateContent:'a/task/project/updateContent',           //修改（一级）任务内容
         updateArchiveState:'a/task/project/updateArchiveState', //取消归档
         updateState:'a/task/project/updateState',               //修改（一、二级）任务状态
-        getArchivePage:'a/task/project/getArchivePage'         //分页查询归档任务列表
+        getArchivePage:'a/task/project/getArchivePage',         //分页查询归档任务列表
+        userList:'a/sys/user/userList'         //分页查询归档任务列表
     }:{
         save:'json/save.json',                             //新增任务
         findMyProject:'json/findMyProject.json',           //查询项目下的任务列表（通道）
@@ -37,9 +38,10 @@ const source =(flag)=>{
         updateContent:'json/updateContent.json',           //修改（一级）任务内容
         updateArchiveState:'json/updateArchiveState.json', //取消归档
         updateState:'json/updateState.json',               //修改（一、二级）任务状态
-        getArchivePage:'json/getArchivePage.json'         //分页查询归档任务列表
+        getArchivePage:'json/getArchivePage.json',         //分页查询归档任务列表
+        userList:'json/userList.json'
     }
 }
 
 
-export default source(true);
+export default source(false);

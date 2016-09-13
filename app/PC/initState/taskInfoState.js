@@ -21,11 +21,6 @@ export default {
                 source: sour.getRecord, //login的路径
                 result:''
             },
-            publicChoosePersonCmp:{
-                choosePersonFlag:false, //开启选人弹框的标志
-                source:sour.updateTitle,    //暂无接口
-                result:''
-            },
             alterTitleDo:{
                 source:sour.updateTitle,
                 result:''
@@ -49,6 +44,11 @@ export default {
         },
         publicGalleryTabCmp:{
             source:sour.saveTask,
+            result:''
+        },
+        publicChoosePersonCmp:{
+            choosePersonFlag:false, //开启选人弹框的标志
+            source:sour.userList,
             result:''
         },
         taskInfoArchiveCmp:{

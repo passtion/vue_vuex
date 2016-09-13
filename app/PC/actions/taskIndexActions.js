@@ -22,6 +22,7 @@ export const taskIndexAddProjFun = ({ dispatch,state},params)=>{
         dispatch: dispatch,
         getState: state,
         moreParams:params,
+        contentType:'application/json;charset=UTF-8',
         componentLst: ['taskIndexCmp', 'taskIndexTabCmp','taskIndexAddCmp']
     });
 };

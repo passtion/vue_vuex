@@ -1,26 +1,38 @@
 {
-  "result": {
-    "1": [{
-      "id": "6cb05035859943038710e9b6f076cd30",
-      "createDate": "2016-08-31 17:43:45",
-      "updateDate": "2016-08-31 18:07:14",
-      "title": "开发项目管理模块",
-      "beginTime": "2016-08-29 00:00:00",
-      "endTime": "2016-09-09 00:00:00",
+  "result": [{
+    "taskStateId": "1",
+    "taskStateText": "待处理",
+    "list": [{
+      "id": "ab020827fb3142cb8871e3bac43d076c",
+      "createDate": "2016-09-06",
+      "updateDate": "2016-09-06 16:00:50",
+      "parentIds": "0,",
+      "parentId": "0",
+      "title": "新的任务1",
+      "beginTime": "2016-09-06 16:00:50",
       "priorityId": "2",
-      "content": "开发项目管理模块功能",
+      "content": "",
       "taskStateId": "1",
       "grade": 1,
-      "responsibles": "李蒋洋",
+      "responsibles": "",
       "projectId": "c7928a1a99ff476ebc5897e202ee1d1e",
-      "endTimeVal": "16/09/09 星期五",
-      "isOverTime": "F",
+      "subTaskAmount": "1",
       "finishAmount": "0",
-      "subTaskAmount": "0"
-    }],
-    "2": [],
-    "6": []
+      "archiveState": 1,
+      "endTimeVal": "",
+      "isOverTime": "F"
+    }]
   },
+    {
+      "taskStateId": "2",
+      "taskStateText": "进行中",
+      "list": []
+    },
+    {
+      "taskStateId": "6",
+      "taskStateText": "已完成",
+      "list": []
+    }],
   "message": "success",
   "status": "0"
 }

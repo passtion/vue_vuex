@@ -169,7 +169,8 @@
         </section>
     </div>
     <Public-choose-person
-            v-if="taskInfoGetPopChoosePersonFlag"
+            v-if="chociePer.show"
+            :params="chociePer"
     ></Public-choose-person>
 </template>
 <script>
@@ -220,6 +221,14 @@
                 flowLst:[],      //流水列表
                 subTskLst:[],      //子任务列表
                 title:'',
+                chociePer:{
+                  show:false,
+                  x:0,
+                  y:0,
+                  add:'',
+                  del:'',
+                  choiceLst:[]
+                },
                 calendar: {
                     show: false,
                     x: 0,
@@ -263,7 +272,7 @@
                 (e.target)&&(e.target.textContent = titleVale);
                 if(!titleVale) return;
                 //缓存里面增加
-                const params = {parentId:this.params.id,taskStateId:this.type,title: titleVale, endTimeVal: this.calendar.items.picker3.value,responsibleList:[{"userId": "00510d53bca34fdbaf762effdb280575",name:'彭峰'}]};
+                const params = {parentId:this.params.id,taskStateId:this.params.taskStateId,title: titleVale, endTimeVal: this.calendar.items.picker3.value,responsibleList:[{"userId": "00510d53bca34fdbaf762effdb280575",name:'彭峰'}]};
                 //请求后台,并添加id
                 this.taskInfoAddSunJobFun({
                         params:params,
@@ -297,7 +306,7 @@
                 this[type] = value;
             },
             alertStatus(num){
-                const params = {id:this.params.id,type:num,oldType:this.params.taskStateId};
+                const params = {id:this.params.id,taskStateId:num,oldType:this.params.taskStateId};
                 this.taskInfoPopAlterStatusFun({
                     params:params,
                     result:(value)=>{
@@ -355,6 +364,10 @@
                 }
                 })
             },
+            openPerson(e){
+                this.calendar.x=e.target.offsetLeft;
+                this.calendar.y=e.target.offsetTop+e.target.offsetHeight+8;
+            }
             // 打开显示选择器
             open(e,type) {
                 // 设置类型

@@ -8,7 +8,7 @@
     ul.public-error-transition li a{position: absolute;right: 18px;top: 17px;background: url("../../images/pop-close.png") 0/100% no-repeat transparent;}
     </style>
 <template>
-    {{taskInfoGetPublicError}}
+
     <ul v-if="taskInfoGetPublicError"  transition='public-error' transition-mode="out-in"  >
         <li>
             <p>

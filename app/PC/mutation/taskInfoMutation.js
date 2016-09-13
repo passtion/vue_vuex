@@ -8,39 +8,78 @@ export default {
         state.taskInfoTabCmp.taskInfoPopCmp[flag] = params;
     },
     ADDIOBINCACHE(state,params){
-        const taskLst =state.taskInfoTabCmp.result.result[params.taskStateId],
-              length =  taskLst.length;
-        taskLst.push( params);
+        const taskLst =state.taskInfoTabCmp.result.result;
+        taskLst.forEach((item)=>{
+                if(item.taskStateId == params.taskStateId){
+                    const lst =  item.list,
+                          length = lst.length;
+                    lst.push( params);
+                }
+        });
     },
     ADDJOBARTERIDINCACHE(state,{type,id}){
-        const taskLst =state.taskInfoTabCmp.result.result[type],
-              length =  taskLst.length;
-        taskLst[length-1].id=id;
+        const taskLst =state.taskInfoTabCmp.result.result;
+        taskLst.forEach((item)=>{
+            if(item.taskStateId == type){
+                const lst =  item.list,
+                    length = lst.length;
+                lst[length-1].id=id;
+            }
+        });
     },
     SHOWORHIDEERROR(state,params){
         state.taskInfoTabCmp.toolErrorCmp.result.message = params;
     },
     ARLTERTILTLEINCAHCE(state,{id,title,type}){
-        const taskLst =state.taskInfoTabCmp.result.result[type];
-            taskLst.forEach((item)=>(item.id == id ) && (item.title=title));
+        const taskLst =state.taskInfoTabCmp.result.result;
+        taskLst.forEach((item)=>{
+            if(item.taskStateId == type){
+                const lst =  item.list;
+                lst.forEach((it)=>(it.id == id ) && (it.title=title))
+            }
+        });
     },
-    ALRTERSTATUINCAHCE(state,{id,type,oldType}){
-        const oldLst =state.taskInfoTabCmp.result.result[oldType],
-              newLst = state.taskInfoTabCmp.result.result[type];
-        oldLst.forEach((item,i)=>{
-            if(item.id == id ) {
-                item.taskStateId=type;
-                (newLst.push(item));
-                oldLst.splice(i,1)
+    ALRTERSTATUINCAHCE(state,{id,taskStateId,oldType}){
+        const taskLst =state.taskInfoTabCmp.result.result;
+        let child ={};
+        const setValue=()=>{
+            taskLst.forEach((item)=>{
+                if(item.taskStateId == taskStateId){
+                    child.taskStateId = taskStateId;
+                    item.list.push(child);
+
+                }
+            })
+        };
+        taskLst.forEach((item)=>{
+            if(item.taskStateId == oldType){
+                const lst =  item.list;
+                lst.forEach((it,i)=>{
+                    if(it.id == id ) {
+                        child=it;
+                        setValue();
+                        lst.splice(i,1);
+                    }
+                })
             }
         });
     },
     ARLTERCONTENTINCAHCE(state,{id,type,content}){
-        const newLst = state.taskInfoTabCmp.result.result[type];
-        newLst.forEach((item,i)=>(item.id == id )&&(item.content=content));
+        const taskLst =state.taskInfoTabCmp.result.result;
+        taskLst.forEach((item)=>{
+            if(item.taskStateId == type){
+                const lst =  item.list;
+                lst.forEach((it)=>(it.id == id ) && (it.content=content))
+            }
+        });
     },
     ALTERPRIORITINCACHE(state,{id,priorityId,type}){
-        const newLst = state.taskInfoTabCmp.result.result[type];
-        newLst.forEach((item,i)=>(item.id == id )&&(item.priorityId=priorityId));
+        const taskLst =state.taskInfoTabCmp.result.result;
+        taskLst.forEach((item)=>{
+            if(item.taskStateId == type){
+                const lst =  item.list;
+                lst.forEach((it)=>(it.id == id ) && (it.priorityId=priorityId))
+            }
+        });
     }
 };

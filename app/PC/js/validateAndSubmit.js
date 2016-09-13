@@ -18,6 +18,7 @@ import RSA from '../../rsa/lib/RSA' ;
  * @param getState      所有的props
  * @param componentLst  逐渐的顺序(必填)
  * @param result        返回后的数据处理的方法
+ * @param contentType
  */
 const validateAndSubmit=({
     dispatch,
@@ -26,11 +27,13 @@ const validateAndSubmit=({
     validates=[],
     submitType='Post',
     moreParams={},
+    contentType='application/x-www-form-urlencoded',
     loadFlg=false,  //loading的标志
     otpFlag=false,  //otp倒数的标志
     isCheck=false,
     result =false
     }={})=>{
+
     getState= JSON.parse(JSON.stringify(getState));
     const obj =myObj(dispatch,getState,componentLst,loadFlg,otpFlag);
     let params={},
@@ -54,14 +57,14 @@ const validateAndSubmit=({
             return !isNull;
         }
     }
-    let jsonTool = new JsonTool(),
-        sucParams=jsonTool.concat(params.success,moreParams);
-    for(let key in sucParams){  //进行前后排空 并将密码进行rsa加密
-        sucParams[key] = $.trim(sucParams[key]);
-    }
-    //result && (sucParams.result = result);  //增加成功自处理的方法
-    isCheck || Ajax[submitType](obj,sucParams,result);
-    return sucParams;
+    let jsonTool = new JsonTool();
+       jsonTool.concat(moreParams,params.success);
+    //for(let key in sucParams){  //进行前后排空 并将密码进行rsa加密
+    //    sucParams[key] = $.trim(sucParams[key]);
+    //}
+    const date =JSON.stringify(moreParams);
+    isCheck || Ajax[submitType](obj,date,result,contentType);
+    return moreParams;
 };
 
 /**

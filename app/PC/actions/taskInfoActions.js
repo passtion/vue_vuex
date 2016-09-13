@@ -165,8 +165,19 @@ export const taskInfoGetArchiveFun  = function ({ dispatch, state })  {
     validateAndSubmit({
         dispatch: dispatch,
         getState: state,
-        submitType:'Get',
         componentLst: ['taskInfoCmp', 'taskInfoTabCmp', 'taskInfoArchiveCmp']
+    });
+};
+/**
+ * 获取员工列表
+ * @param dispatch
+ * @param state
+ */
+export const taskInfoGetPersonFun  = function ({ dispatch, state })  {
+    validateAndSubmit({
+        dispatch: dispatch,
+        getState: state,
+        componentLst: ['taskInfoCmp', 'taskInfoTabCmp', 'publicChoosePersonCmp']
     });
 };
 
@@ -195,7 +206,6 @@ export const taskInfoAddJobInFun  = ({dispatch, state},{params,result}) => {
     validateAndSubmit({
         dispatch: dispatch,
         getState: state,
-        submitType:'Get',
         moreParams:params,
         componentLst: ['taskInfoCmp', 'taskInfoTabCmp', 'publicGalleryTabCmp'],
         result:result
@@ -232,8 +242,8 @@ export  const taskInfoAlterContentInCacheFun = function ({ dispatch},{id,content
  * @param dispatch
  * @param params
  */
-export  const taskInfoAlterStatusInCacheFun = function ({ dispatch},{id,type,oldType}){
-    dispatch(types.ALRTERSTATUINCAHCE,{id,type,oldType});
+export  const taskInfoAlterStatusInCacheFun = function ({ dispatch},{id,taskStateId,oldType}){
+    dispatch(types.ALRTERSTATUINCAHCE,{id,taskStateId,oldType});
 };
 /**
  * 改变优先级

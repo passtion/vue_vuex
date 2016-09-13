@@ -2,54 +2,54 @@
     .item { cursor: pointer; }
     .bold {font-weight: bold; }
     ul {  line-height: 1.5em; list-style-type: dot; }
-    .choice-input input{margin: auto;height: 32px;width: 300px;display: inherit;}
-    .proj-info-bounced .staff-list,.proj-info-bounced .choice-people{height: 350px;width: 50%;float: left;margin: auto;padding: 15px;}
-    .proj-info-bounced .staff-list ul,.proj-info-bounced .choice-people ul{display: inline-block;}
-    .proj-info-bounced .staff-list{border-right:1px solid #eeeeee; }
+    .choice-input input{margin: auto;height: 32px;width: 80%;display: inherit;}
+    .proj-info-bounced .staff-list,.proj-info-bounced .choice-people{width: 100%;float: left;margin: auto;padding: 15px;}
+    .proj-info-bounced .staff-list ul,.proj-info-bounced .choice-people ul{display: inline-block;width: 100%;}
+    .proj-info-bounced .staff-list ul,.proj-info-bounced .choice-people ul li{background: url("../../images/level-choice.png") 140px 0 no-repeat transparent;width: 100%;}
 </style>
 <template>
-    <Tool-box></Tool-box>
-    <div class="proj-info-bounced">
+    <div class="proj-info-bounced" style="width: 200px;height:300px; box-shadow: 0 7px 21px rgba(0,0,0,.1);border: solid 1px transparent;left:{{left}}px;top:{{top}}px">
         <header style="border:0;">
             <p class="pop-title" >
                 <em class="in-block pop-close" ></em>
             </p>
         </header>
-        <section class="scroll-lst" >
+        <section class="scroll-lst"  style="height:250px;">
             <div class="choice-input">
-                <input type="text" placeholder="查找成员" v-model="searchQuery" >
+                <input type="text" placeholder="输入姓名或者部门查找" v-model="searchQuery" >
             </div>
-            <div class="staff-list">
-                <ul>
-                    <Tool-recur
-                            class="item"
-                            :filter-key="searchQuery"
-                            v-for="model in taskInfoGetPerson.result"
-                            :model="model"
-                            :add="addName">
-                    </Tool-recur>
-                </ul>
-            </div>
-            <div class="choice-people">
+            <div class="choice-people"  >
                 <ul >
                     <li v-for='item in nameLst'>
-                        {{item}}
+                        {{item.name}} &nbsp;&nbsp; {{item.deptName}}
                     </li>
                 </ul>
             </div>
+            <div class="staff-list" >
+                <ul>
+                    <li  v-for="model in taskInfoGetPerson.result | filterBy searchQuery"   style="cusor:pointer;">
+                        <div    style="cursor: pointer;"
+                                @click.stop="addName(model)"
+                                :class="{bold: isFolder}">
+                            {{model.name}} &nbsp;&nbsp; {{model.deptName}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
         </section>
     </div>
 </template>
 <script>
-    import ToolBox from '../public/ToolBox.vue';
-    import ToolRecur from'../public/ToolRecur.vue'
     import {taskInfoGetPerson} from '../../getters/taskInfoGetter';
-    import {taskInfoGetPersonFun} from '../../actions/taskInfoActions';
     export default{
-        components:{
-            ToolBox,
-            ToolRecur
-        },
+        props:[
+                'params',   //参数
+                'add',      //选人方法
+                'choiceLst', //多人选人的方法
+                'left',
+                'top'
+        ],
         data(){
             return{
                 nameLst:[],
@@ -59,22 +59,15 @@
         vuex: {
             getters: {
                 taskInfoGetPerson    //登录后返回的参数
-
-            },
-            actions: {  //行为  所有公共的方法 执行请加bouncedFun()
-                taskInfoGetPersonFun
             }
         },
         methods:{
-            addName(name){
-                this.nameLst.push(name);
+            addName(model){
+                this.nameLst.push(model);
             },
-            sortBy(){
-
+            removeName(model){
+                this.nameLst.remove(model);
             }
-        },
-        ready(){
-            this.taskInfoGetPersonFun();
         }
     }
 </script>
