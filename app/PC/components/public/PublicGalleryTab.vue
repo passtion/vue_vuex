@@ -95,11 +95,10 @@
                 const titleVale =  this.titleVale.trim();
                 if(!titleVale) return;
                 //缓存里面增加
-                const params = {taskStateId:this.params.taskStateId,projectId:this.$route.params.id,title: titleVale,responsibles:'待定',endTimeVal: this.calendar.value,id:'noPut'};
+                const params = {taskStateId:this.params.taskStateId,projectId:this.$route.params.id,title: titleVale,responsibles:'待定',"responsibleList": [{"userId": "00510d53bca34fdbaf762effdb280575"}],endTimeVal: this.calendar.value,id:'noPut'};
                 this.taskInfoAddJobInCacheFun(params);
                 //请求后台,并添加id
-                this.taskInfoAddJobInFun(
-                        {
+                this.taskInfoAddJobInFun({
                             params:params,
                             result:(value)=>{
                             const addCacheParam = {type:this.params.taskStateId,id:value.result.id};

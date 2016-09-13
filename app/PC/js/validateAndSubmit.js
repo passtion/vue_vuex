@@ -62,7 +62,8 @@ const validateAndSubmit=({
     //for(let key in sucParams){  //进行前后排空 并将密码进行rsa加密
     //    sucParams[key] = $.trim(sucParams[key]);
     //}
-    const date =JSON.stringify(moreParams);
+    let date =JSON.stringify(moreParams);
+     //date =moreParams;
     isCheck || Ajax[submitType](obj,date,result,contentType);
     return moreParams;
 };

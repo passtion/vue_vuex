@@ -137,7 +137,7 @@
                                 <em class="time-icon"></em>
                                 {{calendar.items.picker3.value?calendar.items.picker3.value:'设置截止时间'}}
                             </a>
-                            <span class="name-icon child-name" >彭峰</span>
+                            <span class="name-icon child-name" >{{this.joinLst[0].name | cutTwo}}</span>
                             <a class="cteate-new-job" @click.prevent="addSubJob()">创建</a>
                         </p>
                     </div>
@@ -272,13 +272,14 @@
                 (e.target)&&(e.target.textContent = titleVale);
                 if(!titleVale) return;
                 //缓存里面增加
-                const params = {parentId:this.params.id,taskStateId:this.params.taskStateId,title: titleVale, endTimeVal: this.calendar.items.picker3.value,responsibleList:[{"userId": "00510d53bca34fdbaf762effdb280575",name:'彭峰'}]};
+                const params = {parentId:this.params.id,taskStateId:this.params.taskStateId,title: titleVale, endTimeVal: this.calendar.items.picker3.value,responsibleList:[{"userId": this.joinLst[0].userId,name:this.joinLst[0].name}]};
                 //请求后台,并添加id
                 this.taskInfoAddSunJobFun({
                         params:params,
                         result:(value)=>{
                     this.flowLst.unshift({"recordContent": `系统管理员 添加了子任务-${titleVale}`,"createDate": (new Date()).format("yyyy-MM-dd hh:mm:ss")});
-                params.id = value.id;
+                params.id = value.result.id;
+                alert(JSON.stringify(params));
                 (value.status == 0)
                             ? this.addSubJobInCache(params) //增加id到缓存
                             :this.taskInfoShowOrHideErrorFun(value.message);//做报错处理
@@ -367,7 +368,7 @@
             openPerson(e){
                 this.calendar.x=e.target.offsetLeft;
                 this.calendar.y=e.target.offsetTop+e.target.offsetHeight+8;
-            }
+            },
             // 打开显示选择器
             open(e,type) {
                 // 设置类型
