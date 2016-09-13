@@ -3,8 +3,8 @@
  */
 import core from './core.js';
 
-const JpPost = (obj,date="",result) => {
-    const params ={dataType:"JSONP",date:date};
+const JpPost = (obj,date="",result,contentType) => {
+    const params ={dataType:"JSONP",date:date,contentType:contentType};
     result && (params.success=result);
     core(obj,params);
 };

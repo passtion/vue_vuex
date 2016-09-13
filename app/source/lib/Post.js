@@ -3,8 +3,8 @@
  */
 import core from './core.js';
 
-const Post = (obj,date={},result) => {
-    const params ={date:date};
+const Post = (obj,date={},result,contentType) => {
+    const params ={date:date,contentType:contentType};
     result && (params.success=result);
     core(obj,params);
 }

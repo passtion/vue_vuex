@@ -5,9 +5,11 @@
     <li draggable="true"  class="gallery-job" :oldType="params.taskStateId"  id="{{params.id}}" @click="taskInfoPopChangeFlagFun({flag:'openPopFlag',params:true})" @mouseover="longLevel(true)" @mouseout="longLevel(false)" >
         <div class="job-level{{params.priorityId}} job-level {{(LevelLongFlag || levelFlag) ? 'width20':''}}"  @click.stop="showLeve($event)"></div>
         <ul v-if="levelFlag" class="level-list" transition="level-list" transition-mode="out-in">
-            <li class="level-ordinary" :class="params.priorityId=='1' ?'choice':''" @click.stop="alertPriority(1)">普 通</li>
-            <li class="level-emergency" :class="params.priorityId=='2' ?'choice': ''" @click.stop="alertPriority(2)">紧 急</li>
-            <li class="level-visit" :class="params.priorityId=='3' ? 'choice': ''" @click.stop="alertPriority(3)">非常紧急</li>
+            <li class="level-ordinary" :class="params.priorityId=='1' ?'choice':''" @click.stop="alertPriority(1)">低</li>
+            <li class="level-ordinary" :class="params.priorityId=='2' ?'choice':''" @click.stop="alertPriority(2)">普 通</li>
+            <li class="level-ordinary" :class="params.priorityId=='3' ?'choice':''" @click.stop="alertPriority(3)">高</li>
+            <li class="level-emergency" :class="params.priorityId=='4' ?'choice': ''" @click.stop="alertPriority(4)">紧 急</li>
+            <li class="level-visit" :class="params.priorityId=='5' ? 'choice': ''" @click.stop="alertPriority(5)">立刻</li>
         </ul>
         <p class="job-title">{{params.title}}</p>
         <p class="job-icon">

@@ -21,9 +21,11 @@
     Vue.filter('prioriName', function (value) {
       const  count = parseInt(value);
       switch (count){
-        case 1:  return '普通';
-        case 2:  return '紧急';
-        case 3:  return '非常紧急';
+        case 1:  return '低';
+        case 2:  return '普通';
+        case 3:  return '高';
+        case 4:  return '紧急';
+        case 5:  return '立刻';
       }
     });
   };

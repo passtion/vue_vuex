@@ -161,10 +161,11 @@ export const taskInfoAddSunJobFun = function ({ dispatch,state},{params,result})
  * @param dispatch
  * @param state
  */
-export const taskInfoGetArchiveFun  = function ({ dispatch, state })  {
+export const taskInfoGetArchiveFun  = function ({ dispatch, state },params)  {
     validateAndSubmit({
         dispatch: dispatch,
         getState: state,
+        moreParams:params,
         componentLst: ['taskInfoCmp', 'taskInfoTabCmp', 'taskInfoArchiveCmp']
     });
 };

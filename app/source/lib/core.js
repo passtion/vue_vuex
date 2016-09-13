@@ -5,20 +5,18 @@ import $ from 'jquery';
 const core = (  obj,{
                     url=obj.props.source,
                     type="POST",
-                    date="",
+                    date={},
                     dateType='JSON',
+                    contentType='application/x-www-form-urlencoded',
                     success=(result)=>{obj.setState({result:result},true)},
                     error=()=>{obj.setState({result:{'message':'请求超时,检查网络','status':'9' }},true)}
                 }={}) => {
-            for (let key in date){
-                date[key] = $.trim(date[key]);
-            }
-
         let otp ={
             'url': url,
             'type':type,
             'data':date,
             'dataType':dateType,
+            'contentType':"application/json;charset=UTF-8",
             'error':error,
             'success':success
         };

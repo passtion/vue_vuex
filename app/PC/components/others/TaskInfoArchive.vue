@@ -26,15 +26,14 @@
             </p>
             <p class="proj-title"  >
                 <em class="query-icon" ></em>
-                <input class="editable" type="text" v-model="queryLst" @keyup.enter="queryKey(queryLst)"></p>
+                <input class="editable" type="text"  placeholder="检索本页,回车查询" v-model="queryLst" @keyup.enter="queryKey(queryLst)">
+            </p>
         </header>
         <section class="scroll-lst">
-
             <ul class="archive-lst" >
                <Task-info-archive-li
                         v-for="item in taskInfoGetArchive.result.list | filterBy queryLst"
                         :params="item"
-
                 >
                 </Task-info-archive-li>
             </ul>
@@ -61,20 +60,25 @@
         },
         data(){
             return{
-                queryLst:''
+                queryLst:'',
+                params:{
+                    "projectId": this.$route.params.id,
+                    "pageNo": 1,
+                    "pageSize": 10
+                }
             }
         },
         methods:{
             queryKey(keyWord){
-                alert("查询"+keyWord+"关键字");
+                this.params.title= keyWord;
+                this.taskInfoGetArchiveFun(this.params);
                 this.queryLst= "";
-                this.taskInfoGetArchiveFun(keyWord);
 
             }
         },
 
         ready(){
-            this.taskInfoGetArchiveFun();
+            this.taskInfoGetArchiveFun(this.params);
         }
     }
 </script>

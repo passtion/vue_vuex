@@ -7,8 +7,8 @@
   "scripts": {
     "t": "mocha --compilers js:babel-register --require ./test/test_helper.js --recursive ./test",
     "t:w": "npm test -- --watch",
-    "d": "export WEBPACK_DIR=PC&&webpack-dev-server --inline --port 3000 --devtool eval --progress --colors --host 192.168.201.76  --content-base build/PC",
-    "dh5": "export WEBPACK_DIR=H5&&webpack-dev-server --inline  --port 3001 --devtool eval --progress --colors  --content-base build/H5",
+    "d": "export WEBPACK_DIR=PC&&webpack-dev-server --inline --port 3002 --devtool eval --progress --colors   --content-base build/PC",
+    "dh5": "export WEBPACK_DIR=H5&&webpack-dev-server --inline  --port 3001 --devtool eval --progress --colors --host 192.168.201.76  --content-base build/H5",
     "h5": "export WEBPACK_DIR=H5&&./node_modules/.bin/webpack",
     "h5m": "export WEBPACK_DIR=H5&&export NODE_ENV=production && ./node_modules/.bin/webpack",
     "pcm": "export WEBPACK_DIR=PC&&export NODE_ENV=production && ./node_modules/.bin/webpack",

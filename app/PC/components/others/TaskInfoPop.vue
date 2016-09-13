@@ -103,9 +103,11 @@
                         {{params.priorityId | prioriName}}
                     </a>
                     <ul v-if="priorityFlag" class="proj-priority-list">
-                        <li :class="params.priorityId=='1' ? 'pop-choice':''" @click.stop="alertPriority(1)" ><a>普通</a></li>
-                        <li :class="params.priorityId=='2' ? 'pop-choice':''" @click.stop="alertPriority(2)" ><a>紧急</a></li>
-                        <li :class="params.priorityId=='3' ? 'pop-choice':''" @click.stop="alertPriority(3)" ><a>非常紧急</a></li>
+                        <li :class="params.priorityId=='1' ? 'pop-choice':''" @click.stop="alertPriority(1)" ><a>低</a></li>
+                        <li :class="params.priorityId=='2' ? 'pop-choice':''" @click.stop="alertPriority(2)" ><a>普通</a></li>
+                        <li :class="params.priorityId=='3' ? 'pop-choice':''" @click.stop="alertPriority(3)" ><a>高</a></li>
+                        <li :class="params.priorityId=='4' ? 'pop-choice':''" @click.stop="alertPriority(4)" ><a>紧急</a></li>
+                        <li :class="params.priorityId=='5' ? 'pop-choice':''" @click.stop="alertPriority(5)" ><a>立刻</a></li>
                     </ul>
                 </li>
                 <li style="clear: both;"></li>
@@ -272,14 +274,13 @@
                 (e.target)&&(e.target.textContent = titleVale);
                 if(!titleVale) return;
                 //缓存里面增加
-                const params = {parentId:this.params.id,taskStateId:this.params.taskStateId,title: titleVale, endTimeVal: this.calendar.items.picker3.value,responsibleList:[{"userId": this.joinLst[0].userId,name:this.joinLst[0].name}]};
+                const params = {parentId:this.params.id,taskStateId:this.params.taskStateId,title: titleVale,endTime:this.calendar.items.picker3.value+' 00:00:00' , endTimeVal: this.calendar.items.picker3.value,responsibleList:[{"userId": this.joinLst[0].userId,name:this.joinLst[0].name}]};
                 //请求后台,并添加id
                 this.taskInfoAddSunJobFun({
                         params:params,
                         result:(value)=>{
                     this.flowLst.unshift({"recordContent": `系统管理员 添加了子任务-${titleVale}`,"createDate": (new Date()).format("yyyy-MM-dd hh:mm:ss")});
                 params.id = value.result.id;
-                alert(JSON.stringify(params));
                 (value.status == 0)
                             ? this.addSubJobInCache(params) //增加id到缓存
                             :this.taskInfoShowOrHideErrorFun(value.message);//做报错处理
