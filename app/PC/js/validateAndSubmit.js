@@ -27,7 +27,7 @@ const validateAndSubmit=({
     validates=[],
     submitType='Post',
     moreParams={},
-    contentType='application/x-www-form-urlencoded',
+    contentType="application/json;charset=UTF-8",
     loadFlg=false,  //loading的标志
     otpFlag=false,  //otp倒数的标志
     isCheck=false,

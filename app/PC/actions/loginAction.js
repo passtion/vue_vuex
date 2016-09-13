@@ -16,6 +16,7 @@ export const loginLoginTabLoginFun = function ({ dispatch, state }) {
     validateAndSubmit({
         dispatch: dispatch,
         getState: state,
+        contentType:"application/x-www-form-urlencoded",
         componentLst: ['loginCmp', 'loginTabCmp', 'btmCntCmp'],
         loadFlg: 'btnFlag',
         moreParams: {autoLogin: autoLogin},

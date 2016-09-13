@@ -99,7 +99,7 @@
         ready(){
             this.$watch('loginGetResult',() => {
                 this.loginLoginTabGetStopOtpFun();   //停止计数
-                if(this.loginGetResult.status == '0') {(this.$route.router.go({name:"index"}));}
+                if(this.loginGetResult.status == '0') {(this.$route.router.go({name:"taskIndex"}));}
                 else {this.showErroFlag = true;}
             });
         }
