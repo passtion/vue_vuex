@@ -103,7 +103,7 @@
                             result:(value)=>{
                             const addCacheParam = {type:this.params.taskStateId,id:value.result.id};
                             (value.status == 0)
-                                    ? this.taskInfoAddJobIdInCacheFun(addCacheParam)//增加id到缓存
+                                    ?this.taskInfoAddJobIdInCacheFun(addCacheParam)//增加id到缓存
                                     :this.taskInfoShowOrHideErrorFun(value.message);//做报错处理
                         }
             });

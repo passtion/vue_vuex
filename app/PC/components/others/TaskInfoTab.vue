@@ -77,6 +77,7 @@
         },
         methods: {
             handleImageDrop: function(itemOne, itemTwo) {
+                if (itemTwo.getAttribute('id').length >1) return;
                 console.log('handleImageDrop', itemOne.getAttribute('id'),itemOne.getAttribute('oldType'), itemTwo.getAttribute('id'));
                 const params = {"id":itemOne.getAttribute('id'),"taskStateId":itemTwo.getAttribute('id'),"oldType":itemOne.getAttribute('oldType')};
                 this.taskInfoAlterStatusInCacheFun(params);

@@ -73,9 +73,9 @@
                 <li :class="params.taskStateId=='6' ? 'pop-choice':''" @click.stop="alertStatus(6)" ><a>已完结</a></li>
             </ul>
             <ul v-if="moreFlag" class="proj-more-list">
-                <li @click.stop="alertStatus(3)" ><a>删除任务</a></li>
-                <li @click.stop="alertStatus(4)" ><a>归档任务</a></li>
-                <li @click.stop="alertStatus(5)" ><a>暂停任务</a></li>
+                <li @click.stop="alertStatus(3)" ><a>暂停任务</a></li>
+                <li @click.stop="alertStatus(4)" ><a>已延迟</a></li>
+                <li @click.stop="alertStatus(5)" ><a>已取消</a></li>
             </ul>
             <p class="proj-title editable" title="点击可编剧" contenteditable   @keyup.enter.prevent="alertTitle($event)" >{{params.title}}</p>
         </header>
