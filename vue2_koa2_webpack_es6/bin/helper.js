@@ -13,6 +13,22 @@ export function extend (to, from) {
   return to
 }
 
+
+var crypto = require('crypto');
+//sha1
+
+/**
+ * sha1 加密
+ * @param str
+ * @returns {*}
+ */
+export function sha1(str) {
+  var md5sum = crypto.createHash('sha1');
+  md5sum.update(str,  'utf8');
+  str = md5sum.digest('hex');
+  return str;
+}
+
 /**
  * 生成随机字符串
  * @param  {Number} len 要生成的长度

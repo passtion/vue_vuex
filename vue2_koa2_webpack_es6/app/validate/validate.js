@@ -20,7 +20,7 @@ import JsonTool from '../tool/lib/JsonTool' ;
  *                              rules中rule的目录
  *							判断非空				isEmpty
  *							身份证姓名规则校验		isName
- *							Emile规则校验		isEmile
+ *							Emile规则校验		    isEmile
  *							纯数字规则校验		isFigure
  *							电话号码规则校验		isPhone
  *							身份证号码规则校验		isIdentityCard

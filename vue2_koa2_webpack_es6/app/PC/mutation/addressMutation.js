@@ -1,18 +1,46 @@
 export  default {
-    ADDADDRESSINCACHE(state,param){
-        state.queryAddressLst.list.push(param);
+    ADDADRESSLSTINCACHE(state,{params}){
+        state.queryAddressLst.result.list=params;
     },
-    DELETEADDRESSINCACHE(state,seqid){
-      const list = state.queryAddressLst.list;
-        list.forEach((item ,i)=>{
-            if(item.seqid == seqid) list.splice(i,1)
+    ADDADDRESSINCACHE(state,{params}){
+        const list = state.queryAddressLst.result.list;
+        (params.is_default == 1) && list.forEach((item)=> {
+            if ( item.is_default == 1) item.is_default = 0;
+        });
+        state.queryAddressLst.result.list.push(params);
+    },
+    DELETEADDRESSINCACHE(state,{params}){
+      let list = state.queryAddressLst.result.list;
+        if (list.length ==1){
+            state.queryAddressLst.result.list=[];
+        }else {
+            list.forEach((item ,i)=>{
+                if(item.seqid == params) {
+                    list.splice(i,1)
+                }
+            })
+        }
+    },
+    ALTERADDRESSINCACHE(state,{params}){
+        const list = state.queryAddressLst.result.list;
+        list.forEach((item)=>{
+            if(item.seqid == params.seqid) {
+                for(let key in params) item[key] = params[key]
+            }else {
+                if(params.is_default == 1) item.is_default = 0;
+            }
         })
     },
-    ALTERADDRESSINCACHE(state,param){
-        const list = state.queryAddressLst.list;
-        list.map((item)=>{
-            if(item.seqid == seqid) item = param
+    SETDEFAULTINCACHE(state,{params}){
+        const list = state.queryAddressLst.result.list;
+        list.forEach((item)=>{
+            if(item.seqid == params) {
+               item.is_default = 1;
+            }else{
+                if(item.is_default==1) item.is_default = 0
+            }
         })
     }
+
 }
 

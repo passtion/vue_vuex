@@ -20,6 +20,7 @@ var path = require('path'),
     outPath =path.resolve(__dirname, prod ? "./dist/"+dir : "./build/"+dir),
     config = {
     entry: entries,
+    // entry: { index: path.resolve(__dirname,'./app/PC/htmlJs/index.js')},
     output: {
         path: outPath,
         filename: prod ? "js/[name].min.js" : "js/[name].js",
@@ -40,7 +41,9 @@ var path = require('path'),
         extensions: ['', '.js', '.less', '.css', '.png', '.jpg','.woff', '.svg', '.eot', '.woff2', '.ttf'],
         root: './app',
         // 模块别名
-        alias: {}
+        alias: {
+            // 'vux-components': 'vux/src/components'
+        }
     },
     module: {
         loaders: [
@@ -52,6 +55,19 @@ var path = require('path'),
             //    test: /\.less$/,
             //    loader: 'style!css!less'
             //},
+            {
+                test: /\.json$/,
+                loader: 'json'
+            },
+            {
+                test: /vux.src.*?js$/,
+                loader: 'babel',
+                query:{
+                    "presets": ["es2015","stage-2"],
+                    "plugins": ["transform-runtime"],
+                    "comments": false
+                }
+            },
             {
                 test: /\.(css|less)$/,
                 loader: ExtractTextPlugin.extract('vue-style-loader','css-loader','less-loader')
@@ -66,18 +82,18 @@ var path = require('path'),
                 //loaders:['es3ify-loader', 'babel-loader'],
                 loader: 'babel',
                 query:{
-                        "presets": ["es2015","stage-2"],
-                        "plugins": ["transform-runtime"],
-                        "comments": false
-                        },
+                    "presets": ["es2015", "stage-2"],
+                    "plugins": ["transform-runtime"],
+                    "comments": false
+                },
                 exclude: /node_modules/
 
             },
             {
                 test: /\.vue$/,
-                loader: 'vue',
-                exclude: /node_modules/
-            }
+                loader: 'vue'
+                // exclude: /node_modules/
+            },
             //,{
             //test: /\.html$/,
             //loader: 'html?attrs=img:src img:srcset'
@@ -112,10 +128,10 @@ var path = require('path'),
 
 chunks.forEach(function(pathname) {
     var template ='./templates/index.ejs';
-    template = dir=='PC' && pathname == 'useCar_index' ? './templates/BDplan.ejs' : template;
+    template = dir=='PC' && pathname == 'useCar_index' ?  path.resolve(__dirname,'./templates/BDplan.ejs') :  path.resolve(__dirname,template);
     var conf = {
             title: '星星打车',
-            favicon:'./app/'+dir+'/images/favicon.ico', //favicon路径
+            favicon:path.resolve(__dirname, './app/'+dir+'/images/favicon.ico'), //favicon路径
             filename: pathname+'.html',
             template: template,
             inject: 'body',
@@ -144,7 +160,7 @@ if (prod) {
 } else {
     config.devtool = 'source-map';  //开启调试模式
     config.devServer = {
-        contentBase: './build'+dir+'/',
+        contentBase:  path.resolve(__dirname,'./build'+dir+'/'),
         hot: true,
         historyApiFallback: true,
         publicPath: "",
@@ -182,7 +198,8 @@ function getEntry(globPath, pathDir) {
         basename = path.basename(entry, extname);
         pathname = path.join(dirname, basename);
         pathname = pathDir ? pathname.replace(new RegExp('^' + pathDir), '') : pathname;
-        entries[pathname] = './' + entry;
+        entries[pathname] = path.resolve(__dirname, './' + entry);
     }
+    console.log(entries)
     return entries;
 }

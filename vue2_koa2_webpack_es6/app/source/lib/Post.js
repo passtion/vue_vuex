@@ -4,7 +4,7 @@
 import core from './core.js';
 
 const Post = (obj,date={},result,contentType,async) => {
-    const params ={date:date,contentType:contentType,async};
+    const params ={date:date,contentType:contentType,async:async};
     result && (params.success=result);
     core(obj,params);
 }

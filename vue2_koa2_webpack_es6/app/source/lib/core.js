@@ -2,10 +2,12 @@
  * Created by girl on 16/5/25.
  */
 import $ from 'jquery';
+import  '../../tool/lib/FileTool';
 const core = (  obj,{
                     url=obj.props.source,
                     async,
                     type="POST",
+                    fileElementId=false,
                     date={},
                     dateType='JSON',
                     contentType='application/x-www-form-urlencoded',
@@ -28,7 +30,28 @@ const core = (  obj,{
         otp.jsonp="callback";
     }
 
-       return $.ajax(otp);
+    if( typeof fileElementId == 'String' ){
+        otp.secureuri = false;
+        otp.type = null;
+        otp.fileElementId = fileElementId;
+       return $.ajaxFileUpload(otp);
+    }else if(fileElementId){
+        const formdata = new FormData();
+        formdata.append('data', date)
+        formdata.append('blob',fileElementId)
+        otp.processData=false;
+        otp.contentType=false;
+        otp.dataType=false;
+        otp.data=formdata;
+        // const xhr = new XMLHttpRequest();
+        // xhr.open('POST', obj.props.source, true);
+        // xhr.send(formdata);
+        // return ;
+    }
+    return $.ajax(otp);
+
+
+
 };
 
 module.exports =  core;

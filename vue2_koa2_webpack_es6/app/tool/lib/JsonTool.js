@@ -19,6 +19,7 @@ class JsonTool{
         for(let key in json2){
             json1[key] = json2[key];
         };
+        // alert(JSON.stringify(json1))
         return json1;
     }
     concatLst(jsonLst=[]){

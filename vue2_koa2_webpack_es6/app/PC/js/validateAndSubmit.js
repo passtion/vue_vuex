@@ -5,6 +5,8 @@ import $ from 'jquery';
 import Ajax from '../../source/ajax';
 import validate from '../../validate/validate';
 import JsonTool from '../../tool/lib/JsonTool' ;
+import {showError,publicLoadingFun} from '../vuex/index/actions' ;
+
 /**
  *
  * @param validates     校验类 不填是直接查询
@@ -18,12 +20,14 @@ import JsonTool from '../../tool/lib/JsonTool' ;
  * @param componentLst  逐渐的顺序(必填)
  * @param result        返回后的数据处理的方法
  * @param contentType
+ * @param fileElementId 当fileElementId为true时，表示文件上传。为file input的id
  */
 const validateAndSubmit=({
     dispatch,
     getState,
     async=true,
     componentLst=[],
+    fileElementId= false ,
     validates=[],
     submitType='Post',
     moreParams={},
@@ -32,42 +36,51 @@ const validateAndSubmit=({
     otpFlag=false,  //otp倒数的标志
     isCheck=false,
     result =false
-    }={})=>{
+}={})=>{
     getState= JSON.parse(JSON.stringify(getState));
     const obj =myObj(dispatch,getState,componentLst,loadFlg,otpFlag);
     let params={},
         loading = {};
-    if(loadFlg) {loading[loadFlg]=!loadFlg;obj.setState(loading)} //加载
+    if(loadFlg) {publicLoadingFun({dispatch:dispatch},true)} //加载
 
     if (validates !== []){
         params = validate(validates);
         //弹出错误
         const errors=params.error;
         $('.public_errMsg').attr('errMsg','');          //去除错误
-            //表单提交
-        let isNull =false;
+        //表单提交
         for(let key in errors){
             //$(key).parents('.public_errMsg').attr('errMsg',`  *${errors[key]}`);  //显示错误
-            alert(`  *${errors[key]}`);
-            isNull = key;
-        }
-        if (isNull) {
-            if(loadFlg) {loading[loadFlg]=!!loadFlg;obj.setState(loading)}; //解除加载
-            return !isNull;
+            if(loadFlg) {publicLoadingFun({dispatch:dispatch},false)}; //解除加载
+            const errorMsg = {show:true,msg:errors[key],status:''}
+            showError({dispatch:dispatch},errorMsg);
+            return false;
+            // alert(`  *${errors[key]}`);
         }
     }
     let jsonTool = new JsonTool();
-       jsonTool.concat(moreParams,params.success);
+    jsonTool.concat(moreParams,params.success);
     //for(let key in sucParams){  //进行前后排空 并将密码进行rsa加密
     //    sucParams[key] = $.trim(sucParams[key]);
     //}
     // let date =JSON.stringify(moreParams);
-     const date =JSON.stringify({
-         head:{webType:getState.webType,openid:getState.openid},
-         body:moreParams
-     });
+    const date =JSON.stringify({
+        head:{webType:getState.webType,openid:getState.openid},
+        body:moreParams
+    });
+    const backFun = loadFlg   ? (res)=>{
+        publicLoadingFun({dispatch:dispatch},false);
+        // alert(JSON.stringify(res))
+        // 200成功，309未有记录
+        if(res.status!=200 && res.status!=309){
+            const errorMsg = {show:true,msg:res.info,status:'',};
+            showError({dispatch:dispatch},errorMsg);
+        } else {
+            result ? result(res) : obj.setState({result:res},true);
+        }
+    } : result;
 
-    isCheck || Ajax[submitType](obj,date,result,contentType,async);
+    isCheck || Ajax[submitType](obj,date,backFun,contentType,async,fileElementId);
     return moreParams;
 };
 
@@ -107,21 +120,23 @@ validateAndSubmit.undidObj=function(getState,familyNameLst,result,loadFlg,otpFla
  */
 function myObj(dispatch, getState,familyNameLst,loadFlg,otpFlag){
     const sta = getState,
-          nowProps=validateAndSubmit.undidObj(sta,familyNameLst,{});
+        nowProps=validateAndSubmit.undidObj(sta,familyNameLst,{});
     return{
-       props:{source:nowProps.source},
-       setState :(result={},type)=>{
-           const sta = getState;
-           dispatch('SUBMITE',{familyNameLst:familyNameLst,result:result,loadFlg:loadFlg,otpFlag:otpFlag,type:type});
-       }
-   }
+        props:{source:nowProps.source},
+        setState :(result={},type)=>{
+            const sta = getState;
+            dispatch('SUBMITE',{familyNameLst:familyNameLst,result:result,loadFlg:loadFlg,otpFlag:otpFlag,type:type});
+        }
+    }
 };
 
 
 function concat(json1,json2){
+    json2.result && (json2.result.list || (json2.result.list=[]));
     for(let key in json2){
         json1[key] = json2[key];
     }
+
 }
 
 module.exports =  validateAndSubmit;

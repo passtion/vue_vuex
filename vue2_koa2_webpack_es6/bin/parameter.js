@@ -23,6 +23,7 @@ export const USER_AGENT = 'node'
 
 //访问java后台路径
 export const PORT_URL = 'http://172.16.1.139:8595/rmip_a018/doAction'
+// export const PORT_URL = 'http://172.16.2.110:8080/rmip_a018/doAction'
 
 //当接口为缺省时安全认证信息
 export const FALSE_AUTHORIZATION = base64(`${GUEST}:${GUEST}`)

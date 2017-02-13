@@ -90,6 +90,7 @@ export default async function ({
     console.log(`http:${JSON.stringify(http)}`);
     const value = await postJava(url, http);
     console.log(`respose:${JSON.stringify(value)}`);
+    value.body ||  (value.body ={}) ;
     value.body.status = value.header.status;
     value.body.info = value.header.info;
     return value.body;
@@ -130,7 +131,11 @@ function getChckCode(timestamp, appcode, username, password) {
     sum += parseInt(timestamp.substring(10, 12))
     sum += parseInt(timestamp.substring(12, 14))
     const auth = `${appcode}:${sum}:${username}:${password}`
-    const hasher = crypto.createHash("md5")
-    hasher.update(auth)
-    return hasher.digest('hex')//hashmsg为加密之后的数据
+    // const hasher = MD5(auth);
+    // return hasher;//hashmsg为加密之后的数据
+    return MD5(auth)//hashmsg为加密之后的数据
+}
+
+export function MD5(str){
+    return crypto.createHash("md5").update(str).digest('hex');
 }

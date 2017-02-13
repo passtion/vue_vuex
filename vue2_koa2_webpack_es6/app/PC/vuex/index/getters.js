@@ -7,3 +7,4 @@
 export const  appid = state => state.appid;
 export const  openid = state => state.openid;
 export const  secret = state => state.secret;
+export const  publicError = state => state.publicError;

@@ -5,6 +5,7 @@ import Get from "./lib/Get";
 import Post from "./lib/Post";
 import JpGet from "./lib/JpGet";
 import JpPost from "./lib/JpPost";
+import PostFile from "./lib/PostFile";
 /**
  *
  * @type {{Get, Post, JpGet, JpPost}}
@@ -19,7 +20,8 @@ const Ajax = {
     Get: Get,
     Post: Post,
     JpGet: JpGet,
-    JpPost: JpPost
+    JpPost: JpPost,
+    PostFile: PostFile,
 }
 
 module.exports = Ajax;

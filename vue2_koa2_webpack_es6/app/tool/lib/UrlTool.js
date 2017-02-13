@@ -16,6 +16,14 @@ class UrlTool {
     }
 
     /**
+     * 在vue router获取当前微信的页面
+     */
+    getIndexUrl(){
+        const url = window.location.href;
+        return (url.split('#!/'))[0];
+    }
+
+    /**
      *
      * @returns {*}
      */
